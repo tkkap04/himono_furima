@@ -1,0 +1,70 @@
+.change-container {
+    width: 40%;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+/* タイトルの中央配置 */
+.change-container__title-box {
+    text-align: center;
+    margin-bottom: 2vw;
+}
+
+.change-container__title-text {
+    font-size: 2vw;
+    font-weight: bold;
+    color: #333;
+}
+
+/* フォーム内の各項目のタイトル */
+.change-container__item-box,
+.change-container__current-box {
+    margin-bottom: 0.5vw;
+}
+
+.change-container__item {
+    font-size: 1.2vw;
+    font-weight: bold;
+    color: #000;
+}
+
+.change-container__input,
+.change-container__select {
+    width: 100%;
+    padding: 0.8vw;
+    font-size: 1vw;
+    border: 1px solid #ccc;
+    border-radius: 0.5vw;
+    box-sizing: border-box;
+}
+
+/* エラーメッセージの設定 */
+.input-box__error-message {
+    height: 1.2vw;
+    font-size: 1vw;
+    color: red;
+}
+
+/* 送信ボタンの設定 */
+.input-box__item-submit {
+    text-align: center;
+    margin-top: 1.5vw;
+}
+
+.input-box__item-submit-button {
+    width: 100%;
+    padding: 0.8vw;
+    margin: 2vw 0;
+    font-size: 1.2vw;
+    color: #fff;
+    background-color: rgb(250, 97, 97);
+    border: none;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.input-box__item-submit-button:hover {
+    background-color: rgb(255, 134, 134);
+}

@@ -1,0 +1,85 @@
+.header {
+    background-color: black;
+    height: 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2vw;
+}
+
+.header-nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ナビゲーション左側 */
+.header-nav-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.header-nav-left__img {
+    height: 3vw;
+    margin-right: 1vw;
+}
+
+/* ナビゲーション中央 */
+.header-nav-center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-nav-center__form {
+    display: flex;
+    align-items: center;
+}
+
+.header-nav-center__form-input {
+    width: 30vw;
+    font-size: 1.5vw;
+    padding: 0.5vw;
+    border-radius: 0.5vw;
+}
+
+.header-nav-center__form-button {
+    display: none;
+}
+
+/* ナビゲーション右側 */
+.header-nav-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    justify-content: flex-end;
+}
+
+.header-nav-right__item {
+    margin-left: 2vw;
+    font-size: 1.5vw;
+}
+
+.header-nav-right__item a {
+    color: white;
+    text-decoration: none;
+}
+
+.header-nav-right__item a[href="/sell"] {
+    display: inline-block;
+    background-color: white;
+    color: black;
+    padding: 0.5vw 1vw;
+    border-radius: 0.5vw;
+    font-weight: bold;
+    transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+    box-shadow: 0 0.2vw 0.5vw rgba(0, 0, 0, 0.2);
+}
+
+.header-nav-right__item a[href="/sell"]:hover {
+    transform: translateY(0.2vw);
+    box-shadow: 0 0.1vw 0.3vw rgba(0, 0, 0, 0.2);
+}

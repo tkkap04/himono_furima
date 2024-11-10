@@ -1,0 +1,96 @@
+/* コンテナ全体の設定 */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 入力フォーム全体の設定 */
+.input {
+    width: 40%;
+    margin-top: 5vw;
+}
+
+/* タイトルの中央配置 */
+.input-title {
+    text-align: center;
+    margin-bottom: 2vw;
+}
+
+.input-title__text {
+    font-size: 2vw;
+    font-weight: bold;
+    color: #333;
+}
+
+/* フォーム内の各項目のタイトル */
+.input-box__item-title-box {
+    margin-bottom: 0.5vw;
+}
+
+.input-box__item-title {
+    font-size: 1.2vw;
+    font-weight: bold;
+    color: #000;
+}
+
+/* 入力ボックスの設定 */
+.input-box__item__email,
+.input-box__item__password {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 1.5vw;
+}
+
+.input-box__item-input {
+    width: 100%;
+    padding: 0.8vw;
+    font-size: 1vw;
+    border: 1px solid #ccc;
+    border-radius: 0.5vw;
+    box-sizing: border-box;
+}
+
+/* エラーメッセージの設定 */
+.input-box__error-message {
+    height: 1.2vw;
+    font-size: 1vw;
+    color: red;
+}
+
+/* 送信ボタンの設定 */
+.input-box__item-submit {
+    text-align: center;
+    margin-top: 1.5vw;
+}
+
+.input-box__item-submit-button {
+    width: 100%;
+    padding: 0.8vw;
+    margin: 2vw 0;
+    font-size: 1.2vw;
+    color: #fff;
+    background-color: rgb(250, 97, 97);
+    border: none;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.input-box__item-submit-button:hover {
+    background-color: rgb(255, 134, 134);
+}
+
+/* リンクボタン */
+.input-move {
+    display: block;
+    text-align: center;
+    font-size: 1vw;
+    color: #0066cc;
+    margin-top: 2vw;
+    text-decoration: none;
+}
+
+.input-move:hover {
+    text-decoration: underline;
+}

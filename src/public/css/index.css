@@ -1,0 +1,73 @@
+/* 全体のレイアウト */
+.main-box {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* タブリンク */
+.main-box-top {
+    width: 90%;
+    display: flex;
+    justify-content: left;
+    margin: 5vw 0 0 10vw;
+    gap: 5vw;
+}
+
+.main-box-top__item {
+    color: black;
+    font-size: 1.5vw;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.main-box-top__item.active {
+    color: red;
+}
+
+/* グレーの横線 */
+.main-box-top-wrapper {
+    width: 100%;
+    border-bottom: #ccc solid 2px;
+    display: flex;
+    justify-content: center;
+}
+
+/* 商品一覧 */
+.main-box-bottom-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.main-box-bottom {
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2vw;
+    margin-top: 3vw;
+}
+
+.main-box-bottom__item {
+    text-align: center;
+}
+
+.item-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    height: auto;
+    border-radius: 8px;
+    border:#ccc solid 3px;
+    transition: transform 0.3s;
+}
+
+.item-image:hover {
+    transform: scale(1.05);
+}
+
+/* スマホ表示のレスポンシブデザイン */
+@media (max-width: 768px) {
+    .main-box-bottom {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

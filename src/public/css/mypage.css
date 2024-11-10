@@ -1,0 +1,117 @@
+.mypage-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header {
+    height: auto;
+}
+
+.mypage-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.mypage__profile-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 30%;
+    padding: 0.2vw;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+}
+
+
+
+.mypage__profile-image__img {
+    width: 10vw;
+    height: 10vw;
+    padding: 0.5vw;
+    border-radius: 50%;
+    border: #555 1px solid;
+    box-sizing: border-box;
+}
+
+.mypage__profile-details {
+    display: inline-block;
+    margin-left: 3vw;
+    text-align: left;
+}
+
+.mypage__profile-username {
+    font-size: 1.5vw;
+    font-weight: bold;
+}
+
+.mypage__profile-edit-button {
+    display: inline-block;
+    padding: 0.2vw 2vw;
+    margin-top: 10px;
+    color: rgb(250, 97, 97);
+    background-color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    border: solid 1px rgb(250, 97, 97);
+}
+
+.mypage__profile-edit-button:hover {
+    color: rgb(255, 134, 134);
+    border: solid 1px rgb(255, 134, 134);
+}
+
+.mypage__tabs-section {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 10%;
+    padding-left: 10vw;
+    background-color: #ffffff;
+    border-bottom: #555 1px solid;
+}
+
+.mypage__tabs {
+    display: flex;
+    gap: 5vw;
+}
+
+.mypage__tab-item {
+    margin: 0 0.2vw;
+}
+
+.mypage__tab-item a {
+    text-decoration: none;
+    font-size: 1.2vw;
+    color: gray;
+}
+
+.mypage__tab-item .active {
+    color: red;
+    font-weight: bold;
+}
+
+.mypage__items-section {
+    height: 60%;
+    overflow-y: auto;
+    background-color: #ffffff;
+    padding: 0.2vw;
+}
+
+.mypage__items-section-list {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.mypage__items-section-box{
+    display: inline-block;
+    border: #555 solid 1px;
+    cursor: pointer;
+}
+
+.mypage__items-section-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
