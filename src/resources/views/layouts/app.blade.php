@@ -32,6 +32,11 @@
                         </form>
                         </div>
                     <ul class="header-nav-right">
+                        @if(Auth::user()->isAdmin())
+                            <li class="header-nav-right__item">
+                                <a href="{{ route('admin.home') }}">管理画面</a>
+                            </li>
+                        @endif
                         <li class="header-nav-right__item">
                             <form id="logout-form" action="{{ route('logout') }}" method="post">
                                 @csrf

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class PurchaseController extends Controller
 {
@@ -23,8 +24,18 @@ class PurchaseController extends Controller
             'item' => $item,
             'currentPaymentMethod' => $currentPaymentMethod,
             'currentAddress' => $currentAddress,
-            'totalPayment' => $totalPayment
+            'totalPayment' => $totalPayment,
+            'stripeKey' => config('services.stripe.key'),
         ]);
     }
 
+    public function confirm(Request $request, $id)
+    {
+        $item = Item::findOrFail($id);
+
+        return view('confirm', [
+            'item' => $item,
+            'user' => auth()->user(),
+        ]);
+    }
 }

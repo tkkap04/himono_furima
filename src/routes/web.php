@@ -8,6 +8,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ChangeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\AdminController;
 
 
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
@@ -16,8 +18,6 @@ Route::get('/item/{id}', [ItemController::class, 'show'])->name('items.show');
 Route::middleware('auth')->group(function () {
     // マイページ表示
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
-    Route::get('/mypage/selling', [MypageController::class, 'selling'])->name('mypage.selling');
-    Route::get('/mypage/purchased', [MypageController::class, 'purchased'])->name('mypage.purchased');
 
     // プロフィール編集
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -35,6 +35,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/purchase/{id}', [PurchaseController::class, 'show'])->name('purchase.show');
     Route::post('/purchase/confirm/{id}', [PurchaseController::class, 'confirm'])->name('purchase.confirm');
 
+    // 決済処理
+    Route::post('/payment/card', [PaymentController::class, 'cardProcess'])->name('payment.card');
+    Route::post('/payment/noncard', [PaymentController::class, 'nonCardProcess'])->name('payment.noncard');
+
+    // 決済成功後のページ
+    Route::get('/success/card', [PaymentController::class, 'successCard'])->name('purchase.success.card');
+    Route::get('/success/noncard', [PaymentController::class, 'successNonCard'])->name('purchase.success.noncard');
+
     // 支払方法変更
     Route::get('/change/method', [ChangeController::class, 'showMethod'])->name('change.method');
     Route::post('/change/method', [ChangeController::class, 'updateMethod'])->name('update.method');
@@ -46,4 +54,14 @@ Route::middleware('auth')->group(function () {
     // 出品
     Route::get('/sell', [ItemController::class, 'create'])->name('items.store');
     Route::post('/sell', [ItemController::class, 'store'])->name('items');
+});
+
+Route::group(['middleware' => 'admin'], function() {
+    Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->middleware('admin')->name('comments.destroy');
+    Route::get('/home', [AdminController::class, 'home'])->name('admin.home');
+    Route::get('/admin/list', [AdminController::class, 'showList'])->name('admin.email.list');
+    Route::post('/admin/send-email/{user}', [AdminController::class, 'sendEmail'])->name('admin.sendEmail');
+    Route::post('/admin/send-email-all', [AdminController::class, 'sendEmailAll'])->name('admin.sendEmailAll');
+    Route::get('/admin/edit-email', [AdminController::class, 'editEmail'])->name('admin.editEmail');
+    Route::post('/admin/update-email', [AdminController::class, 'updateEmail'])->name('admin.updateEmail');
 });

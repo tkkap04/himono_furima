@@ -135,21 +135,61 @@
 
 
 /* コメントページ用 */
-.comments-section {
+.item-detail__comments-section {
     margin-top: 2vw;
 }
 
-.comment {
+.item-detail__comment-box {
     border-bottom: 1px solid #ddd;
 }
 
-.comment p {
+.item-detail__comment-box p {
     margin: 0.5vw 0;
 }
 
-.comment-textarea {
+.item-detail__comment-name {
+    font-size: 1.2vw;
+}
+
+.item-detail__comment-content {
+    font-size: 1.5vw;
+}
+
+.item-detail__comment-below {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5vw;
+}
+
+.item-detail__comment-date {
+    font-size: 1vw;
+    margin-right: 1vw;
+}
+
+.item-detail__comment-delete-form {
+
+}
+
+.comment-delete-button {
+    padding: 0.6vw 1.5vw;
+    font-size: 1.2vw;
+    background-color: #ff2c2c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comment-delete-button:hover {
+    background-color: #940000;
+}
+
+.item-detail__comment-textarea {
     width: 100%;
     padding: 0.8vw;
+    margin-top: 2vw;
     border-radius: 5px;
     border: 1px solid #ccc;
     resize: vertical;
@@ -167,6 +207,6 @@
     cursor: pointer;
 }
 
-.comment-submit-button:hover {
+.comment-submit-button:hover{
     background-color: #ff7777;
 }

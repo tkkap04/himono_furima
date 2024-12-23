@@ -15,36 +15,50 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
-        $tab = $request->query('tab', 'recommend');
+        $tab = $request->get('tab', 'recommend'); 
 
-        $search = $request->get('search');
-        
-        if ($tab === 'favorites') {
-        $items = Auth::user()->favorites->map(function ($favorite) {
-            return $favorite->item;
-        });
-        } else {
-            $items = Item::when($search, function($query, $search) {
+        $items = collect();
+        if ($tab === 'favorites' && Auth::check()) {
+            $items = Auth::user()->favorites->map(function ($favorite) {
+                return $favorite->item->load('images'); 
+            });
+        } elseif ($tab === 'recommend') {
+            $search = $request->get('search');
+            $items = Item::when($search, function ($query, $search) {
                 return $query->where('name', 'like', "%{$search}%")
                             ->orWhere('description', 'like', "%{$search}%")
                             ->orWhere('brand', 'like', "%{$search}%");
-            })->get();
+            })->with('images')->get();
         }
 
-        $searchParams = [
-            'search' => $search
-        ];
-
-        return view('items.index', compact('items', 'searchParams', 'tab'));
+        return view('items.index', [
+            'items' => $items,
+            'activeTab' => $tab,
+        ]);
     }
 
-    public function show($id)
+
+    public function show(Request $request, $id)
     {
-        $item = Item::with(['category', 'condition'])->findOrFail($id);
+        $item = Item::with(['images', 'category', 'condition'])->findOrFail($id);
         $isFavorited = Favorite::where('user_id', Auth::id())->where('item_id', $id)->exists();
         $isCommentPage = false;
 
-        return view('items.show', compact('item', 'isFavorited', 'isCommentPage'));
+        $fromMypage = $request->query('from') === 'mypage';
+
+        $fromToppage = $request->query('from') === 'items.index';
+
+        return view('items.show', compact('item', 'isFavorited', 'isCommentPage', 'fromMypage', 'fromToppage'));
+    }
+
+    public function commentsIndex($id)
+    {
+        $item = Item::with(['images', 'category', 'condition'])->findOrFail($id);
+        $comments = $item->comments()->with('user')->get(); 
+        $isFavorited = Favorite::where('user_id', Auth::id())->where('item_id', $id)->exists();
+        $isCommentPage = true;
+
+        return view('items.show', compact('item', 'comments', 'isFavorited', 'isCommentPage'));
     }
 
     public function create()
@@ -55,7 +69,6 @@ class ItemController extends Controller
         return view('items.store', compact('categories', 'conditions'));
     }
 
-    // 商品保存処理
     public function store(StoreRequest $request)
     {
         $item = new Item();
@@ -71,13 +84,17 @@ class ItemController extends Controller
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $index => $image) {
                 $imagePath = $image->store('public/images');
-                $imageUrl = Storage::url($imagePath);
 
+                \Log::info('Image uploaded: ' . $imagePath);
+
+                $imageUrl = str_replace('public/', 'storage/', $imagePath);
                 $item->images()->create([
                     'image_url' => $imageUrl,
                     'is_top' => $index === 0,
                 ]);
             }
+        } else {
+            \Log::error('No images found in the request.');
         }
 
         return redirect()->route('items.store')->with('success', '商品を出品しました！');

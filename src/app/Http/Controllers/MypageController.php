@@ -9,40 +9,23 @@ use App\Models\User;
 
 class MypageController extends Controller
 {
-        public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
-        $sellingItems = Item::where('seller_id', $user->id)->get();
+        $tab = $request->get('tab', 'selling');
+
+        if ($tab === 'selling') {
+            $items = Item::where('seller_id', $user->id)->with('images')->get();
+        } elseif ($tab === 'purchased') {
+            $items = Item::where('buyer_id', $user->id)->with('images')->get();
+        } else {
+            $items = collect(); 
+        }
 
         return view('mypage', [
             'user' => $user,
-            'items' => $sellingItems,
-            'activeTab' => 'selling',
+            'items' => $items,
+            'activeTab' => $tab,
         ]);
     }
-
-    public function selling()
-    {
-        $user = Auth::user();
-        $sellingItems = Item::where('seller_id', $user->id)->get();
-
-        return view('mypage', [
-            'user' => $user,
-            'items' => $sellingItems,
-            'activeTab' => 'selling',
-        ]);
-    }
-
-    public function purchased()
-    {
-        $user = Auth::user();
-        $purchasedItems = Item::where('buyer_id', $user->id)->get();
-
-        return view('mypage', [
-            'user' => $user,
-            'items' => $purchasedItems,
-            'activeTab' => 'purchased',
-        ]);
-    }
-
 }

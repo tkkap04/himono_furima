@@ -1,0 +1,56 @@
+.admin-edit {
+    width: 30vw;
+    text-align: center;
+    margin: 2vw auto;
+}
+
+.admin-edit__title {
+    font-size: 2vw;
+    margin: 4vw 0;
+}
+
+.admin-edit__box{
+    margin: 2vw auto;
+    width: 30vw;
+}
+
+.admin-edit__mail-label {
+    display: block;
+    text-align: left;
+    font-size: 1.5vw;
+}
+
+.admin-edit__mail-subject--input {
+    width: 100%;
+    height: 3vw;
+    font-size: 1.5vw;
+}
+
+.admin-edit__mail-content--input {
+    width: 100%;
+    height: 20vw;
+    font-size: 1.5vw;
+}
+
+/* 送信ボタンの設定 */
+.admin-edit__submit {
+    text-align: center;
+    margin-top: 1.5vw;
+}
+
+.admin-edit__submit-button {
+    width: 100%;
+    padding: 0.8vw;
+    margin: 2vw 0;
+    font-size: 1.2vw;
+    color: #fff;
+    background-color: rgb(250, 97, 97);
+    border: none;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.admin-edit__submit-button:hover {
+    background-color: rgb(255, 134, 134);
+}

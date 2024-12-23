@@ -16,10 +16,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_image',
         'postal_code',
         'address',
         'building_name',
         'payment_method_id',
+        'role',
     ];
 
     protected $hidden = [
@@ -68,4 +70,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(PaymentMethod::class);
     }
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
 }

@@ -26,15 +26,19 @@ class ProfileController extends Controller
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
+        // プロフィール画像の保存処理
         if ($request->hasFile('profile_image')) {
+            // 古い画像の削除
             if ($user->profile_image) {
-                Storage::delete($user->profile_image);
+                Storage::delete(str_replace('storage/', 'public/', $user->profile_image));
             }
 
+            // 新しい画像を保存
             $path = $request->file('profile_image')->store('public/profile_images');
-            $user->profile_image = str_replace('public/', 'storage/', $path);
+            $user->profile_image = str_replace('public/', 'storage/', $path); // パスを調整
         }
 
+        // プロフィール情報の更新
         $user->name = $request->name;
         $user->postal_code = $request->postal_code;
         $user->address = $request->address;

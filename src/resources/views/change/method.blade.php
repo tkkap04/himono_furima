@@ -10,9 +10,6 @@
         <div class="change-container__title-box">
             <h2 class="change-container__title-text">支払方法の変更</h2>
         </div>
-        <div class="change-container__current-box">
-            <p class="change-container__current">現在の支払方法:{{ $currentPaymentMethod->name ?? '未設定' }}</p>
-        </div>
         <form action="{{ route('update.method') }}" method="POST">
             @csrf
             <label class="change-container__item" for="payment_method">新しい支払方法</label>

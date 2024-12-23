@@ -18,7 +18,7 @@
         @csrf
         <div class="edit-box__form-group--image">
             <input class="edit-box__form-input--image" type="file" name="profile_image" id="profile_image">
-            <img id="profileImagePreview" src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : asset('icon/person.png') }}" alt="プロフィール画像" class="edit-box__form-image">
+            <img id="profileImagePreview" src="{{ $user->profile_image ? asset($user->profile_image) : asset('icon/person.png') }}" alt="プロフィール画像" class="edit-box__form-image">
             <div class="edit-box__form-label--box">
                 <label for="profile_image" class="edit-box__form-label--image">画像を選択する</label>
             </div>

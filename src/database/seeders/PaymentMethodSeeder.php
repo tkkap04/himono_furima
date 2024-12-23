@@ -14,7 +14,7 @@ class PaymentMethodSeeder extends Seeder
      */
     public function run()
     {
-        $methods = ['クレジットカード', '銀行振り込み', 'コンビニ払い'];
+        $methods = ['クレジットカード', '銀行振込', 'コンビニ払い'];
 
         foreach ($methods as $method) {
             PaymentMethod::create(['name' => $method]);

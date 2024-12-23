@@ -15,13 +15,13 @@ class StoreRequest extends FormRequest
     {
         return [
             'images' => 'required|array|min:1',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg|max:2048',
             'category_id' => 'required|exists:categories,id',
             'condition_id' => 'required|exists:conditions,id',
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:20',
             'price' => 'required|numeric|min:0',
-            'brand' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
+            'brand' => 'nullable|string|max:20',
+            'description' => 'nullable|string|max:500',
         ];
     }
 

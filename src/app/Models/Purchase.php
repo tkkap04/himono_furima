@@ -15,6 +15,9 @@ class Purchase extends Model
         'purchased_at',
         'payment_method_id',
         'payment_status',
+        'postal_code',
+        'address',
+        'building_name',
     ];
 
     public function item()
@@ -25,5 +28,10 @@ class Purchase extends Model
     public function buyer()
     {
         return $this->belongsTo(User::class, 'buyer_id');
+    }
+
+    public function paymentMethod()
+    {
+        return $this->belongsTo(PaymentMethod::class);
     }
 }
